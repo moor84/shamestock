@@ -16,13 +16,13 @@ limitations under the License.
 package cmd
 
 import (
-	"github.com/moor84/shamestock/meta"
+	"github.com/moor84/shamestock/preview"
 	"github.com/spf13/cobra"
 )
 
-// csv represents the csv command
-var csv = &cobra.Command{
-	Use:   "csv [path to CSV file]",
+// generateCmd represents the generate command
+var generateCmd = &cobra.Command{
+	Use:   "generate [directory]",
 	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
@@ -33,10 +33,10 @@ to quickly create a Cobra application.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		var path = args[0]
-		meta.WriteAttrsFromCSV(path)
+		preview.CreatePreviews(path)
 	},
 }
 
 func init() {
-	metaCmd.AddCommand(csv)
+	previewCmd.AddCommand(generateCmd)
 }

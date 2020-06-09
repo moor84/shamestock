@@ -3,6 +3,7 @@ module github.com/moor84/shamestock
 go 1.14
 
 require (
+	github.com/PuerkitoBio/goquery v1.5.1
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/mitchellh/mapstructure v1.3.1 // indirect

@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -34,6 +35,8 @@ func WriteAttrsFromCSV(csvFileName string) {
 		if filename == "Filename" {
 			continue
 		}
+
+		filename = filepath.Dir(csvFileName) + "/" + filename
 
 		fmt.Println(filename)
 

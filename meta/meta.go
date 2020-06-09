@@ -20,7 +20,7 @@ func (e Exiv) runCommand(command string, filename string) {
 		return
 	}
 
-	fmt.Println(string(stdout))
+	fmt.Print(string(stdout))
 }
 
 func (e Exiv) WriteTitle(filename string, title string) {

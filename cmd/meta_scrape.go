@@ -16,13 +16,16 @@ limitations under the License.
 package cmd
 
 import (
+	"fmt"
+	"strings"
+
 	"github.com/moor84/shamestock/meta"
 	"github.com/spf13/cobra"
 )
 
-// csv represents the csv command
-var csv = &cobra.Command{
-	Use:   "csv [path to CSV file]",
+// scrapeCmd represents the scrape command
+var scrapeCmd = &cobra.Command{
+	Use:   "scrape [url]",
 	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
@@ -32,11 +35,23 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		var path = args[0]
-		meta.WriteAttrsFromCSV(path)
+		var url = args[0]
+		var attrs = meta.Scrape(url)
+		fmt.Println("Title: " + *attrs.Title)
+		fmt.Println("Keywords: " + strings.Join(attrs.Keywords, ", "))
 	},
 }
 
 func init() {
-	metaCmd.AddCommand(csv)
+	metaCmd.AddCommand(scrapeCmd)
+
+	// Here you will define your flags and configuration settings.
+
+	// Cobra supports Persistent Flags which will work for this command
+	// and all subcommands, e.g.:
+	// scrapeCmd.PersistentFlags().String("foo", "", "A help for foo")
+
+	// Cobra supports local flags which will only run when this command
+	// is called directly, e.g.:
+	// scrapeCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
