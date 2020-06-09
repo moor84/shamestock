@@ -17,3 +17,15 @@ convert -density 150 -units PixelsPerInch -colorspace sRGB "2154.eps" -quality 1
 for i in *.eps; do convert -density 150 -units PixelsPerInch -colorspace sRGB "$i" -quality 100 "${i%.eps}.jpg"; done
 
 convert -density 350 -units PixelsPerInch -colorspace sRGB "456.eps" -quality 100  "456.jpg"
+
+
+-- Process a batch:
+go run main.go prepare template batches/batch2/
+
+go run main.go meta scrapecsv batches/batch2/urls.csv
+
+go run main.go preview generate batches/batch2
+
+go run main.go meta csv batches/batch2/attrs.csv
+
+go run main.go prepare zip batches/batch2

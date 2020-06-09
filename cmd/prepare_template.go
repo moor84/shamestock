@@ -16,16 +16,13 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
-	"strings"
-
 	"github.com/moor84/shamestock/meta"
 	"github.com/spf13/cobra"
 )
 
-// scrapeCmd represents the scrape command
-var scrapeCmd = &cobra.Command{
-	Use:   "scrape [url]",
+// templateCmd represents the zip command
+var templateCmd = &cobra.Command{
+	Use:   "template path-to-directory",
 	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
@@ -35,13 +32,11 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		var url = args[0]
-		var attrs = meta.Scrape(url)
-		fmt.Println("Title: " + *attrs.Title)
-		fmt.Println("Keywords: " + strings.Join(attrs.Keywords, ", "))
+		var path = args[0]
+		meta.CreateCSVtemplate(path)
 	},
 }
 
 func init() {
-	metaCmd.AddCommand(scrapeCmd)
+	prepareCmd.AddCommand(templateCmd)
 }

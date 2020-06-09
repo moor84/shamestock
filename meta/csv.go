@@ -36,6 +36,7 @@ func WriteAttrsFromCSV(csvFileName string) {
 			continue
 		}
 
+		filename = strings.ReplaceAll(filename, ".eps", ".jpg")
 		filename = filepath.Dir(csvFileName) + "/" + filename
 
 		fmt.Println(filename)
