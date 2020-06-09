@@ -20,12 +20,12 @@ convert -density 350 -units PixelsPerInch -colorspace sRGB "456.eps" -quality 10
 
 
 -- Process a batch:
-go run main.go prepare template batches/batch2/
+./shamestock prepare template batches/batch2/
 
-go run main.go meta scrapecsv batches/batch2/urls.csv
+./shamestock meta scrapecsv batches/batch2/urls.csv
 
-go run main.go preview generate batches/batch2
+./shamestock preview generate batches/batch2
 
-go run main.go meta csv batches/batch2/attrs.csv
+./shamestock meta csv batches/batch2/attrs.csv
 
-go run main.go prepare zip batches/batch2
+./shamestock prepare zip batches/batch2
