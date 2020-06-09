@@ -1,0 +1,19 @@
+brew install exiv2
+
+exiv2 -PIkyct print 5981.jpg
+
+exiv2 -PIkt print 5981.jpg
+
+exiv2 -M "set Iptc.Application2.Caption Abstract background template set with geometric shapes in pastel. Vector background" 5981.jpg
+exiv2 -M "set Iptc.Application2.ObjectName Abstract background template set with geometric shapes in pastel. Vector background" 5981.jpg
+
+exiv2 -M "add Iptc.Application2.Keywords abstract" 5981.jpg
+exiv2 -M "add Iptc.Application2.Keywords background" 5981.jpg
+
+
+brew install imagemagick
+convert -density 150 -units PixelsPerInch -colorspace sRGB "2154.eps" -quality 100  "2154.jpg"
+
+for i in *.eps; do convert -density 150 -units PixelsPerInch -colorspace sRGB "$i" -quality 100 "${i%.eps}.jpg"; done
+
+convert -density 350 -units PixelsPerInch -colorspace sRGB "456.eps" -quality 100  "456.jpg"

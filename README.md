@@ -1,2 +1,2 @@
 # shamestock
-Command-line toolik to help migrating out of Shutterstock
+Command-line toolkit to help migrating out of Shutterstock
