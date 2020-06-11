@@ -1,18 +1,3 @@
-/*
-Copyright © 2020 NAME HERE <EMAIL ADDRESS>
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
 package cmd
 
 import (
@@ -23,13 +8,15 @@ import (
 // csv represents the csv command
 var csv = &cobra.Command{
 	Use:   "csv [path to CSV file]",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Write meta attributes to JPEG files from an input CSV file",
+	Long: `Input file example:
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+1234.eps,Christmas Banner,"web,bannner,holiday",https://www.shutterstock.com/image-vector/christmas-banners-1234
+2345.eps,Something Else,"keywords,here",https://www.shutterstock.com/image-vector/something-2345
+
+This command will look for 1234.jpg and 2345.jpg in the same directory where the CSV file is located
+and write the keywords and titles to theirs IPTC tags (that most of stocks will recognise).
+`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		var path = args[0]
