@@ -34,7 +34,7 @@ func Scrape(url string) *Attrs {
 	title := doc.Find("h1.m_b_b").First().Text()
 
 	var keywords = []string{}
-	doc.Find("a.b_aB_a.b_aB_b.b_aB_c").Each(func(i int, s *goquery.Selection) {
+	doc.Find("a.b_aF_a").Each(func(i int, s *goquery.Selection) {
 		// fmt.Println(s.Text())
 		keywords = append(keywords, s.Text())
 	})
