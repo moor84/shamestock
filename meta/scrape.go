@@ -31,10 +31,10 @@ func Scrape(url string) *Attrs {
 		log.Fatal(err)
 	}
 
-	title := doc.Find("h1.m_b_b").First().Text()
+	title := doc.Find("h1[data-automation='ImageDetailsPage_Details']").First().Text()
 
 	var keywords = []string{}
-	doc.Find("a.b_aF_a").Each(func(i int, s *goquery.Selection) {
+	doc.Find("div[data-automation='ExpandableKeywordsList_container_div'] a.o_button_theme_button").Each(func(i int, s *goquery.Selection) {
 		// fmt.Println(s.Text())
 		keywords = append(keywords, s.Text())
 	})
