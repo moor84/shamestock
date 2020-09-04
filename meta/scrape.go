@@ -34,7 +34,7 @@ func Scrape(url string) *Attrs {
 	title := doc.Find("h1[data-automation='ImageDetailsPage_Details']").First().Text()
 
 	var keywords = []string{}
-	doc.Find("div[data-automation='ExpandableKeywordsList_container_div'] a.o_button_theme_button").Each(func(i int, s *goquery.Selection) {
+	doc.Find("div[data-automation='ExpandableKeywordsList_container_div'] a").Each(func(i int, s *goquery.Selection) {
 		// fmt.Println(s.Text())
 		keywords = append(keywords, s.Text())
 	})
