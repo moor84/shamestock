@@ -74,6 +74,7 @@ func scrapeIStockURL(url string) *Attrs {
 		kw = strings.Replace(kw, ", ", "", 1)
 		kw = strings.Replace(kw, " Illustrations", "", 1)
 		kw = strings.ToLower(kw)
+		kw = strings.Split(kw, " - ")[0]
 		keywords = append(keywords, kw)
 	})
 
@@ -82,6 +83,29 @@ func scrapeIStockURL(url string) *Attrs {
 		Description: &title,
 		Keywords:    keywords,
 	}
+}
+
+func filterKeywords(keywords []string) []string {
+	var keywordsNew = []string{}
+	for _, k := range keywords {
+		switch k {
+		case
+			"see all",
+			"white",
+			"black",
+			"white color",
+			"black color",
+			"isolated",
+			"funny",
+			"happyness",
+			"happy",
+			"computer graphic",
+			"digitally generated image":
+			continue
+		}
+		keywordsNew = append(keywordsNew, k)
+	}
+	return keywordsNew
 }
 
 func Scrape(url string) *Attrs {
@@ -95,6 +119,7 @@ func Scrape(url string) *Attrs {
 		attrs = nil
 	}
 	if attrs != nil {
+		attrs.Keywords = filterKeywords(attrs.Keywords)
 		return attrs
 	}
 	title := ""
